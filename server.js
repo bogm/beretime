@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express();
-const server = require('https').Server(app) //craete a server 
+const server = require('http').Server(app) //craete a server 
 const io = require('socket.io')(server) //pass the server to socket io
 const {v4: uuidV4} = require('uuid')
 
