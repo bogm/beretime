@@ -1,12 +1,14 @@
 const express = require('express')
 const app = express();
-const server = require('serverless-http').Server(app) //craete a server 
+const serverless = require('serverless-http')
+const server = require('http').Server(app) //craete a server 
 const io = require('socket.io')(server) //pass the server to socket io
 const {v4: uuidV4} = require('uuid')
 
+module.exports.handler = serverless(app);
 
 app.set('view engine', 'ejs') //set our view engine with ejs
-app.use(express.static('public')) //set up static folder
+app.use(express.static('dist')) //set up static folder
 
 app.get('/', (req, res) =>{
     res.redirect(`/${uuidV4()}`) //pass the uuid function to get a dynamic id
